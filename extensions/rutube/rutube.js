@@ -1,8 +1,8 @@
 'use strict';
 
-/** @type {import("@streamyx/api").Extension} */
+const { defineExtension } = require('@streamyx/api');
 
-const extension = {
+module.exports = defineExtension({
   name: 'rutube',
   tag: 'RUTUBE',
   fetchContentMetadata: async (url) => {
@@ -71,6 +71,4 @@ const extension = {
 
     return results;
   },
-};
-
-module.exports = extension;
+});

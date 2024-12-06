@@ -1,6 +1,6 @@
 {
   "name": "@streamyx/extension-soundcloud",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "SoundCloud support for Streamyx",
   "main": "soundcloud.js",
   "files": [
@@ -29,7 +29,7 @@
     "node": "20 || 21 || 22 || 23"
   },
   "devDependencies": {
-    "@streamyx/api": "^0.1.0",
+    "@streamyx/api": "^0.1.1",
     "@streamyx/core": "^2.3.2",
     "@types/node": "^22.10.1",
     "typescript": "^5.7.2"

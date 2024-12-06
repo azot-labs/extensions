@@ -1,6 +1,6 @@
 {
   "name": "@streamyx/extension-crunchyroll",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Crunchyroll support for Streamyx",
   "license": "AGPL-3.0",
@@ -29,7 +29,7 @@
     }
   },
   "devDependencies": {
-    "@streamyx/api": "^0.1.0",
+    "@streamyx/api": "^0.1.1",
     "@streamyx/core": "^2.3.2",
     "@types/node": "^22.7.5",
     "tsup": "^8.3.0",

@@ -1,5 +1,7 @@
 'use strict';
 
+const { defineExtension } = require('@streamyx/api');
+
 async function findClientID() {
   try {
     const sc = await fetch('https://soundcloud.com/')
@@ -43,9 +45,7 @@ async function findClientID() {
   }
 }
 
-/** @type {import("@streamyx/api").Extension} */
-
-const extension = {
+module.exports = defineExtension({
   name: 'soundcloud',
   fetchContentMetadata: async (url, args) => {
     const patterns = [':author/:song/s-:accessKey', ':author/:song', ':shortLink'];
@@ -108,6 +108,4 @@ const extension = {
     results.push({ title: `${title} ${artist}`, source: { url: file } });
     return results;
   },
-};
-
-module.exports = extension;
+});

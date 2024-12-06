@@ -1,13 +1,13 @@
 'use strict';
 
-/** @type {import("@streamyx/api").Extension} */
+const { defineExtension } = require('@streamyx/api');
 
-const extension = {
+module.exports = defineExtension({
   name: 'weibo',
   fetchContentMetadata: async (url) => {
     const patterns = ['/:userId(\\d+)/:bid', '/detail/:mid'];
     const baseUrls = ['https://weibo.com/', 'https://m.weibo.cn'];
-    const result = core.utils.execUrlPatterns(url, patterns, baseUrls);
+    const result = common.execUrlPatterns(url, patterns, baseUrls);
     const params = result.pathname;
     const results = [];
     const id = params.bid || params.mid;
@@ -36,6 +36,4 @@ const extension = {
     }
     return results;
   },
-};
-
-module.exports = extension;
+});

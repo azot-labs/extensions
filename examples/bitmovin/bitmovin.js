@@ -1,16 +1,17 @@
 'use strict';
 
+const { defineExtension } = require('@streamyx/api');
+
 // Only CommonJS syntax modules is compatible with Streamyx at this time
+// `defineExtension` is just a wrapper for type checking, you can export extension directly as an object if you want
 
-/** @type {import("@streamyx/api").Extension} */
-
-const extension = {
+module.exports = defineExtension({
   name: 'bitmovin',
   fetchContentMetadata: async (url) => {
-    const response = await http.fetch(url);
+    const response = await fetch(url);
     const body = await response.text();
     if (!body.includes('.mpd')) {
-      logger.error(`No MPD found in ${url}`);
+      console.error(`No MPD found in ${url}`);
       return [];
     }
     const mpd = body.split(`'`).find((line) => line.includes('.mpd'));
@@ -25,6 +26,4 @@ const extension = {
       },
     ];
   },
-};
-
-module.exports = extension;
+});

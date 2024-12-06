@@ -1,27 +1,26 @@
 'use strict';
 
-/** @type {import("@streamyx/api").Extension} */
+const { defineExtension } = require('@streamyx/api');
 
-const extension = {
+module.exports = defineExtension({
   name: 'vk',
   tag: 'VK',
   fetchContentMetadata: async (url, args) => {
-    const html = await http
-      .fetch(url)
+    const html = await fetch(url)
       .then((r) => r.arrayBuffer())
       .then((r) => new TextDecoder('utf-8').decode(new Uint8Array(r)))
       .catch(() => '');
-    if (!html) logger.error('Could not fetch video info');
+    if (!html) console.error('Could not fetch video info');
 
     if (!html.includes('{"lang":')) {
-      logger.error('Could not fetch video info');
+      console.error('Could not fetch video info');
       return [];
     }
 
     const js = JSON.parse('{"lang":' + html.split(`{"lang":`)[1].split(']);')[0]);
 
     if (Number(js.mvData.is_active_live) !== 0) {
-      logger.error('Live videos are not supported');
+      console.error('Live videos are not supported');
       return [];
     }
 
@@ -40,7 +39,7 @@ const extension = {
     const mediaUrl = js.player.params[0][`url${quality}`];
     const manifestUrl = js.player.params[0].dash_sep;
     if (!mediaUrl || !manifestUrl) {
-      logger.error('Could not find video URL');
+      console.error('Could not find video URL');
       return results;
     }
     const title = js.player.params[0].md_title.trim();
@@ -54,6 +53,4 @@ const extension = {
     });
     return results;
   },
-};
-
-module.exports = extension;
+});

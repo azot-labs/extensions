@@ -1,18 +1,18 @@
 'use strict';
 
-/** @type {import("@streamyx/api").Extension} */
+const { defineExtension } = require('@streamyx/api');
 
-const extension = {
+module.exports = defineExtension({
   name: 'virtualroom',
   fetchContentMetadata: async (url) => {
     const recordId = new URL(url).searchParams.get('recordId');
 
     const infoUrl = `https://mv1.virtualroom.ru/vr/player/records/${recordId}/info`;
-    const infoResponse = await http.fetch(infoUrl);
+    const infoResponse = await fetch(infoUrl);
     const info = await infoResponse.json();
 
     const eventsUrl = `https://mv1.virtualroom.ru/vr/player/records/${recordId}/events`;
-    const eventsResponse = await http.fetch(eventsUrl);
+    const eventsResponse = await fetch(eventsUrl);
     const events = await eventsResponse.json();
 
     const results = [];
@@ -22,6 +22,4 @@ const extension = {
     }
     return results;
   },
-};
-
-module.exports = extension;
+});

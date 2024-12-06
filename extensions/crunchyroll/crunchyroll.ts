@@ -18,7 +18,7 @@ const init = () => signIn();
 
 const getDrmConfig = async (assetId: string): Promise<DrmConfig> => {
   const options = buildDrmRequestOptions(assetId, storage.accountId || '');
-  const response = await http.fetch(ROUTES.drm, options);
+  const response = await fetch(ROUTES.drm, options);
   const data: any = await response.json();
   return {
     server: `https://lic.drmtoday.com/license-proxy-widevine/cenc/`,
@@ -50,9 +50,9 @@ const getEpisodeMetadata = async (episodeId: string, _args: Options): Promise<Co
   const object = await fetchObject(episodeId);
   const isError = object.__class__ === 'error';
   if (isError) {
-    const response = await http.fetch('https://api.country.is').catch(() => null);
+    const response = await fetch('https://api.country.is').catch(() => null);
     const { ip, country } = await response?.json();
-    logger.info(`IP: ${ip}. Country: ${country}`);
+    console.info(`IP: ${ip}. Country: ${country}`);
     throw new Error(`Episode ${episodeId} not found. Code: ${object.code}. Type: ${object.type}. `);
   }
   const episode = object.items[0];
@@ -75,7 +75,7 @@ const getEpisodeSource = async (episodeId: string, args: Options) => {
   const play = await fetchPlayData(episodeId);
 
   if (play.error === 'TOO_MANY_ACTIVE_STREAMS') {
-    logger.warn(`Too many active streams. Revoking all active streams...`);
+    console.warn(`Too many active streams. Revoking all active streams...`);
     for (const activeStream of play.activeStreams) {
       await revokePlayData(activeStream.contentId, activeStream.token);
     }
@@ -100,7 +100,9 @@ const getEpisodeSource = async (episodeId: string, args: Options) => {
     const versions = [defaultVersion, ...play.versions];
     const version = filterSeasonVersionsByAudio(versions, args.languages);
     if (!version) {
-      logger.warn(`No suitable version found for episode #${episodeId}. Available audio: ${getAudioLocales(versions)}`);
+      console.warn(
+        `No suitable version found for episode #${episodeId}. Available audio: ${getAudioLocales(versions)}`
+      );
     } else if (version.guid !== episodeId) {
       data = await fetchPlayData(version.guid);
     }
@@ -113,7 +115,7 @@ const getEpisodeSource = async (episodeId: string, args: Options) => {
         !args.subtitleLanguages?.length || args.subtitleLanguages?.some((lang: string) => hardsub.hlang.includes(lang));
       if (matchHardsubLang) url = hardsub.url;
     }
-    if (!url) logger.warn(`No suitable hardsub stream found`);
+    if (!url) console.warn(`No suitable hardsub stream found`);
     else data.url = url;
   }
 
@@ -144,7 +146,7 @@ const getEpisodeIdsBySeries = async (seriesId: string, args: Options) => {
   const response = await fetchSeriesSeasons(seriesId);
   const seasons = response.data;
   if (!seasons?.length) {
-    logger.error(`No seasons found`);
+    console.error(`No seasons found`);
     return [];
   }
 
@@ -170,7 +172,7 @@ const getEpisodeIdsBySeries = async (seriesId: string, args: Options) => {
     const availableSeasons = seasons
       .map((s: any) => `S${s.season_number.toString().padStart(2, '0')} (${getAudioLocales(s.versions)})`)
       .join(', ');
-    logger.error(`No suitable episodes found. Available seasons: ${availableSeasons}`);
+    console.error(`No suitable episodes found. Available seasons: ${availableSeasons}`);
     return [];
   }
   const episodeIds = episodes.map((episode: any) => episode.id);

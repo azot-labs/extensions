@@ -1,4 +1,4 @@
-import type { AuthState, CmsAuthResponse } from './types';
+import type { CmsAuthResponse } from './types';
 import { DEVICE, ROUTES } from './constants';
 
 export const HEADERS = {
@@ -21,10 +21,10 @@ const promptCredentials = async () => {
 
 const fetchCmsAuth = async (accessToken: string) => {
   const requestOptions = { method: 'GET', headers: { authorization: `Bearer ${accessToken}` } };
-  const response = await http.fetch(ROUTES.index, requestOptions);
+  const response = await fetch(ROUTES.index, requestOptions);
   if (response.status !== 200) {
-    logger.error(`Can't get CMS token. Status code: ${response.status}`);
-    logger.debug(await response.text());
+    console.error(`Can't get CMS token. Status code: ${response.status}`);
+    console.debug(await response.text());
     return;
   }
   return (await response.json()) as CmsAuthResponse;
@@ -32,50 +32,49 @@ const fetchCmsAuth = async (accessToken: string) => {
 
 const checkToken = () => {
   const TIME_MARGIN = 60000;
-  const hasToken = !!storage.accessToken && !!storage.refreshToken && !!storage.cmsAuth?.cms;
-  const isTokenExpired = hasToken && Number(storage.expires) - TIME_MARGIN < new Date().getTime();
+  const hasToken =
+    !!localStorage.getItem('accessToken') &&
+    !!localStorage.getItem('refreshToken') &&
+    !!localStorage.getItem('cmsAuth');
+  const isTokenExpired = hasToken && Number(localStorage.getItem('expires')) - TIME_MARGIN < new Date().getTime();
   return { hasToken, isTokenExpired };
 };
 
 const fetchToken = async (params: Record<string, string>) => {
   try {
-    const deviceId = storage.deviceId || DEVICE.id;
-    const deviceType = storage.deviceType || DEVICE.type;
+    const deviceId = localStorage.getItem('deviceId') || DEVICE.id;
+    const deviceType = localStorage.getItem('deviceType') || DEVICE.type;
     const options = buildRequestOptions({
       ...params,
       scope: 'offline_access',
       device_id: deviceId,
       device_type: deviceType,
     });
-    const response = await http.fetch(ROUTES.token, options);
+    const response = await fetch(ROUTES.token, options);
     const auth: any = await response.json();
     const error = auth.error || response.status !== 200;
     if (error) {
-      logger.error(`Can't get token. Status code: ${response.status}. Message: ${auth.error}. Logging out...`);
-      logger.debug(JSON.stringify(auth));
+      console.error(`Can't get token. Status code: ${response.status}. Message: ${auth.error}. Logging out...`);
+      console.debug(JSON.stringify(auth));
       await signOut();
       await signIn();
     } else {
       const cmsAuth = await fetchCmsAuth(auth.access_token);
-      const newState: AuthState = {
-        accessToken: auth.access_token,
-        refreshToken: auth.refresh_token,
-        expires: new Date().getTime() + auth.expires_in * 1000,
-        tokenType: auth.token_type,
-        scope: auth.scope,
-        country: auth.country,
-        accountId: auth.account_id,
-        cookies: http.headers.cookie,
-        cmsAuth,
-        deviceId,
-        deviceType,
-      };
-      http.setHeader('authorization', `Bearer ${newState.accessToken}`);
-      await storage.save(newState);
-      return newState;
+      localStorage.setItem('accessToken', auth.access_token);
+      localStorage.setItem('refreshToken', auth.refresh_token);
+      localStorage.setItem('expires', String(new Date().getTime() + auth.expires_in * 1000));
+      localStorage.setItem('tokenType', auth.token_type);
+      localStorage.setItem('scope', auth.scope);
+      localStorage.setItem('country', auth.country);
+      localStorage.setItem('accountId', auth.account_id);
+      localStorage.setItem('cookies', http.headers.cookie);
+      localStorage.setItem('cmsAuth', JSON.stringify(cmsAuth));
+      localStorage.setItem('deviceId', deviceId);
+      localStorage.setItem('deviceType', deviceType);
+      http.setHeader('authorization', `Bearer ${auth.accessToken}`);
     }
   } catch (e: any) {
-    logger.debug(`Auth failed: ${e.message}`);
+    console.debug(`Auth failed: ${e.message}`);
     process.exit(1);
   }
 };
@@ -89,23 +88,23 @@ const fetchRefreshToken = (refreshToken: string) => {
 };
 
 export const signIn = async (username?: string, password?: string) => {
-  await storage.load();
-  http.setHeader('authorization', `Bearer ${storage.accessToken}`);
+  http.setHeader('authorization', `Bearer ${localStorage.getItem('accessToken')}`);
   const { hasToken, isTokenExpired } = checkToken();
   if (!hasToken) {
-    logger.debug(`Requesting credentials`);
+    console.debug(`Requesting credentials`);
     const credentials = username && password ? { username, password } : await promptCredentials();
-    logger.debug(`Requesting token`);
+    console.debug(`Requesting token`);
     await fetchAccessToken(credentials.username, credentials.password);
   } else if (isTokenExpired) {
-    logger.debug(`Refreshing token`);
-    if (storage.refreshToken) await fetchRefreshToken(storage.refreshToken);
+    console.debug(`Refreshing token`);
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (refreshToken) await fetchRefreshToken(refreshToken);
   }
 };
 
 export const signOut = async () => {
   http.setHeader('authorization', '');
-  await storage.clear();
+  localStorage.clear();
 };
 
 export const createAuth = () => {

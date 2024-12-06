@@ -2,30 +2,34 @@ import type { Cms } from './types';
 import { DEVICE, ROUTES } from './constants';
 
 const request = async (url: string, method: string = 'GET') => {
-  logger.debug(`Getting data from ${url}...`);
-  const response = await http.fetch(url, {
+  console.debug(`Getting data from ${url}...`);
+  const response = await fetch(url, {
     method,
     headers: {
-      authorization: `Bearer ${storage.accessToken}`,
+      authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       'User-Agent': DEVICE.userAgent,
     },
   });
   const data = (await response.text()) || '';
-  response.status === 401 && logger.error(`Unauthorized: ${url}`);
-  response.status === 400 && logger.error(`Bad Request: ${url}`);
+  response.status === 401 && console.error(`Unauthorized: ${url}`);
+  response.status === 400 && console.error(`Bad Request: ${url}`);
   const isSuccess = response.status === 200;
-  if (!isSuccess) logger.debug(`Request failed. Route: ${url}. ${data}`);
+  if (!isSuccess) console.debug(`Request failed. Route: ${url}. ${data}`);
   try {
     return data ? JSON.parse(data) : data;
   } catch (e) {
-    logger.debug(data);
-    logger.debug(e as any);
-    logger.error(`Parsing JSON response failed. Route: ${url}`);
+    console.debug(data);
+    console.debug(e as any);
+    console.error(`Parsing JSON response failed. Route: ${url}`);
     process.exit(1);
   }
 };
 
-const getCms = () => (storage.cmsAuth?.cms || {}) as Cms;
+const getCms = () => {
+  const cmsAuth = localStorage.getItem('cmsAuth');
+  if (!cmsAuth) return {} as Cms;
+  return JSON.parse(cmsAuth).cms as Cms;
+};
 
 const getSign = (cms = getCms()) => ({
   Policy: cms.policy,
