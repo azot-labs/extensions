@@ -6,18 +6,38 @@ module.exports = defineExtension({
   name: 'vk',
   tag: 'VK',
   fetchContentMetadata: async (url, args) => {
-    const html = await fetch(url)
-      .then((r) => r.arrayBuffer())
-      .then((r) => new TextDecoder('utf-8').decode(new Uint8Array(r)))
-      .catch(() => '');
-    if (!html) console.error('Could not fetch video info');
+    const [ownerId, videoId] = url.split('video-')[1].split('_');
 
-    if (!html.includes('{"lang":')) {
-      console.error('Could not fetch video info');
-      return [];
-    }
-
-    const js = JSON.parse('{"lang":' + html.split(`{"lang":`)[1].split(']);')[0]);
+    const response = await http.fetchAsChrome('https://vkvideo.ru/al_video.php?act=show', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+        accept: '*/*',
+        'accept-language': 'ru-RU,ru;q=0.9',
+        'sec-ch-ua': '"Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"macOS"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'x-requested-with': 'XMLHttpRequest',
+        Referer: url,
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+      },
+      body: new URLSearchParams({
+        al: 1,
+        autoplay: 1,
+        claim: '',
+        force_no_repeat: true,
+        is_video_page: true,
+        list: '',
+        module: 'direct',
+        t: '',
+        video: `-${ownerId}_${videoId}`,
+      }).toString(),
+    });
+    const data = await response.json();
+    const js = data.payload.find((item) => !!item)?.find((item) => !!item.player);
 
     if (Number(js.mvData.is_active_live) !== 0) {
       console.error('Live videos are not supported');

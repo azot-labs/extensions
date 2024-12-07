@@ -1,6 +1,6 @@
 {
   "name": "@streamyx/extension-vk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "VK support for Streamyx",
   "main": "vk.js",
   "files": [
