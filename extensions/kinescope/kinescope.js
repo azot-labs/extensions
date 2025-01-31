@@ -21,13 +21,14 @@ module.exports = defineExtension({
     if (licenseUrl) {
       const manifest = await fetch(manifestUrl).then((r) => r.text());
       const kid = manifest.split('default_KID="')[1]?.split('"')[0]?.replaceAll('-', '');
-      const encryptedKid = Buffer.from(kid, 'hex').toString('base64').replaceAll('=', '');
-      const licenseResponse = await fetch(licenseUrl, {
+      const encodedKid = Buffer.from(kid, 'hex').toString('base64').replaceAll('=', '');
+      const response = await fetch(licenseUrl, {
         method: 'POST',
         headers: { Referer: 'https://kinescope.io/' },
-        body: JSON.stringify({ kids: [encryptedKid], type: 'temporary' }),
+        body: JSON.stringify({ kids: [encodedKid], type: 'temporary' }),
       }).then((r) => r.json());
-      const key = Buffer.from(licenseResponse['keys'][0]['k'] + '==', 'base64').toString('hex');
+      const encodedKey = response['keys'][0]['k'];
+      const key = Buffer.from(encodedKey + '==', 'base64').toString('hex');
       keys.push({ kid, key });
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
