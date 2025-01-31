@@ -1,0 +1,37 @@
+{
+  "name": "@streamyx/extension-kinescope",
+  "version": "0.0.1",
+  "description": "Kinescope support for Streamyx",
+  "main": "kinescope.js",
+  "files": [
+    "kinescope.js"
+  ],
+  "scripts": {},
+  "keywords": [
+    "streamyx",
+    "extension",
+    "kinescope"
+  ],
+  "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://boosty.to/vitalygashkov"
+    },
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/vitalygashkov"
+    }
+  ],
+  "engines": {
+    "node": "20 || 21 || 22 || 23"
+  },
+  "devDependencies": {
+    "@streamyx/api": "^0.1.1",
+    "@streamyx/core": "^2.3.2",
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2"
+  }
+}
