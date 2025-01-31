@@ -30,7 +30,6 @@ module.exports = defineExtension({
       const encodedKey = response['keys'][0]['k'];
       const key = Buffer.from(encodedKey + '==', 'base64').toString('hex');
       keys.push({ kid, key });
-      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
 
     return [{ title, source: { url: manifestUrl, drm: { keys } } }];
