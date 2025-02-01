@@ -2,13 +2,25 @@
 
 const { defineExtension } = require('@streamyx/api');
 
-// Widevine examples: https://kinescope.io/200660125, https://kinescope.io/201265440
-// ClearKey examples: https://kinescope.io/embed/202544377, https://kinescope.io/201268665
+/**
+ * Widevine example on a third-party service:
+ * Page: https://nd.umschool.net/lesson/38700
+ * Command: streamyx 'https://kinescope.io/2najSKQJAUAAdJQXqdN6xG?v=2.150.1&enableIframeApi&playerId=video_frame_https_kinescope_io_2_naj_skqjaua_ad_jq_xqd_n_6_x_g&size%5Bwidth%5D=100%25&size%5Bheight%5D=100%25&behaviour%5BautoPlay%5D==true' -H 'referer: https://nd.umschool.net/'
+ *
+ * Widevine examples:
+ * Command: streamyx https://kinescope.io/200660125
+ * Command: streamyx https://kinescope.io/201265440
+ *
+ * ClearKey examples:
+ * Command: streamyx https://kinescope.io/201268665
+ * Command: streamyx https://kinescope.io/embed/202544377
+ */
 
 module.exports = defineExtension({
   name: 'kinescope',
-  fetchContentMetadata: async (url) => {
-    const response = await fetch(url);
+  fetchContentMetadata: async (url, args) => {
+    const headers = args.header;
+    const response = await fetch(url, { headers });
     const data = await response.text();
 
     const title = data.split('<title>')[1]?.split('</title>')[0];
