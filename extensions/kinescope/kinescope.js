@@ -2,11 +2,12 @@
 
 const { defineExtension } = require('@streamyx/api');
 
-// Example: https://kinescope.io/embed/202544377
+// Widevine example: https://kinescope.io/200660125
+// ClearKey example: https://kinescope.io/embed/202544377
 
 module.exports = defineExtension({
   name: 'kinescope',
-  fetchContentMetadata: async (url, args) => {
+  fetchContentMetadata: async (url) => {
     const response = await fetch(url);
     const data = await response.text();
 
@@ -16,9 +17,13 @@ module.exports = defineExtension({
     const playlist = playerOptions.playlist[0];
     const manifestUrl = playlist.sources.shakadash?.src;
 
-    const keys = [];
-    const licenseUrl = playlist.drm.clearkey?.licenseUrl;
-    if (licenseUrl) {
+    const drm = {};
+    const clearkey = playlist.drm.clearkey;
+    const widevine = playlist.drm.widevine;
+    if (widevine) {
+      drm.server = widevine.licenseUrl;
+    } else if (clearkey) {
+      const licenseUrl = clearkey.licenseUrl;
       const manifest = await fetch(manifestUrl).then((r) => r.text());
       const kid = manifest.split('default_KID="')[1]?.split('"')[0]?.replaceAll('-', '');
       const encodedKid = Buffer.from(kid, 'hex').toString('base64').replaceAll('=', '');
@@ -29,9 +34,9 @@ module.exports = defineExtension({
       }).then((r) => r.json());
       const encodedKey = response['keys'][0]['k'];
       const key = Buffer.from(encodedKey + '==', 'base64').toString('hex');
-      keys.push({ kid, key });
+      drm.keys = [{ kid, key }];
     }
 
-    return [{ title, source: { url: manifestUrl, drm: { keys } } }];
+    return [{ title, source: { url: manifestUrl, drm } }];
   },
 });
