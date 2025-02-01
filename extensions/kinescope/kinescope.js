@@ -2,8 +2,8 @@
 
 const { defineExtension } = require('@streamyx/api');
 
-// Widevine example: https://kinescope.io/200660125
-// ClearKey example: https://kinescope.io/embed/202544377
+// Widevine examples: https://kinescope.io/200660125, https://kinescope.io/201265440
+// ClearKey examples: https://kinescope.io/embed/202544377, https://kinescope.io/201268665
 
 module.exports = defineExtension({
   name: 'kinescope',
