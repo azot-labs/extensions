@@ -17,7 +17,7 @@ const buildDrmRequestOptions = (assetId: string, accountId: string) => ({
 const init = () => signIn();
 
 const getDrmConfig = async (assetId: string): Promise<DrmConfig> => {
-  const options = buildDrmRequestOptions(assetId, storage.accountId || '');
+  const options = buildDrmRequestOptions(assetId, localStorage.getItem('accountId') || '');
   const response = await fetch(ROUTES.drm, options);
   const data: any = await response.json();
   return {
@@ -60,9 +60,13 @@ const getEpisodeMetadata = async (episodeId: string, _args: Options): Promise<Co
 
   const isMovie = !rawMetadata.episode_number;
   if (isMovie) {
-    return { title: sanitizeString(rawMetadata.series_title) };
+    return {
+      id: episode.id,
+      title: sanitizeString(rawMetadata.series_title),
+    };
   } else {
     return {
+      id: episode.id,
       title: sanitizeString(rawMetadata.series_title),
       seasonNumber: rawMetadata.season_number,
       episodeNumber: rawMetadata.episode_number,
@@ -126,7 +130,7 @@ const getEpisodeSource = async (episodeId: string, args: Options) => {
   const mediaInfo: ContentSource = {
     url,
     headers: {
-      Authorization: `Bearer ${storage.accessToken}`,
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       // 'X-Cr-Disable-Drm': 'true',
       'User-Agent': DEVICE.userAgent,
     },
