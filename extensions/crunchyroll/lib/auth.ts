@@ -91,6 +91,8 @@ export const signIn = async (username?: string, password?: string) => {
   http.setHeader('authorization', `Bearer ${localStorage.getItem('accessToken')}`);
   const { hasToken, isTokenExpired } = checkToken();
   if (!hasToken) {
+    localStorage.removeItem('deviceId');
+    localStorage.removeItem('deviceType');
     console.debug(`Requesting credentials`);
     const credentials = username && password ? { username, password } : await promptCredentials();
     console.debug(`Requesting token`);
