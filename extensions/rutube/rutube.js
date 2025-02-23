@@ -49,7 +49,7 @@ module.exports = defineExtension({
 
     const play = await fetch(requestURL)
       .then((r) => r.json())
-      .catch(() => null);
+      .catch((e) => console.debug(e.message));
     if (!play) {
       logger.error('Cannot fetch play info');
       return results;
