@@ -1,7 +1,7 @@
 {
-  "name": "@streamyx/extension-ntv",
+  "name": "ntv",
   "version": "0.0.2",
-  "description": "NTV support for Streamyx",
+  "description": "Largest commercial television channel in Russia with federal broadcasting",
   "main": "ntv.js",
   "files": [
     "ntv.js"
@@ -14,6 +14,7 @@
   ],
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
+  "private": true,
   "readmeFilename": "README.md",
   "funding": [
     {

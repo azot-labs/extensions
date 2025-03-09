@@ -1,7 +1,7 @@
 {
-  "name": "@streamyx/extension-virtualroom",
+  "name": "virtualroom",
   "version": "0.0.2",
-  "description": "VirtualRoom support for Streamyx",
+  "description": "Russian platform for video conferences and webinars",
   "main": "virtualroom.js",
   "files": [
     "virtualroom.js"
@@ -14,6 +14,7 @@
   ],
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
+  "private": true,
   "readmeFilename": "README.md",
   "funding": [
     {

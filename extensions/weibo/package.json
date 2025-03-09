@@ -1,7 +1,7 @@
 {
-  "name": "@streamyx/extension-weibo",
+  "name": "weibo",
   "version": "0.0.2",
-  "description": "Weibo support for Streamyx",
+  "description": "Microblogging platform and one of the largest social media platforms in China",
   "main": "weibo.js",
   "files": [
     "weibo.js"
@@ -14,6 +14,7 @@
   ],
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
+  "private": true,
   "readmeFilename": "README.md",
   "funding": [
     {

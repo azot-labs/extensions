@@ -1,7 +1,7 @@
 {
   "name": "kinescope",
   "version": "0.0.2",
-  "description": "Kinescope support for Streamyx",
+  "description": "Online video platform for business and EdTech",
   "main": "kinescope.js",
   "private": true,
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",

@@ -1,7 +1,7 @@
 {
-  "name": "@streamyx/extension-soundcloud",
+  "name": "soundcloud",
   "version": "0.0.2",
-  "description": "SoundCloud support for Streamyx",
+  "description": "German service that allows users to upload, share, and stream audio content",
   "main": "soundcloud.js",
   "files": [
     "soundcloud.js"
@@ -14,6 +14,7 @@
   ],
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
+  "private": true,
   "readmeFilename": "README.md",
   "funding": [
     {

@@ -1,7 +1,7 @@
 {
-  "name": "@streamyx/extension-rutube",
+  "name": "rutube",
   "version": "0.0.2",
-  "description": "RUTUBE support for Streamyx",
+  "description": "Russian online service for hosting and watching videos",
   "main": "rutube.js",
   "files": [
     "rutube.js"
@@ -14,6 +14,7 @@
   ],
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
+  "private": true,
   "readmeFilename": "README.md",
   "funding": [
     {
