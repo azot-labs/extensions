@@ -1,10 +1,9 @@
 {
-  "name": "crunchyroll",
-  "version": "0.1.4",
+  "name": "@streamyx/extension-crunchyroll",
+  "version": "0.1.5",
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "World’s largest dedicated anime library",
   "license": "MIT",
-  "private": true,
   "main": "dist/crunchyroll.js",
   "module": "dist/crunchyroll.mjs",
   "types": "dist/crunchyroll.d.ts",
@@ -30,8 +29,7 @@
     }
   },
   "devDependencies": {
-    "@streamyx/api": "^0.1.1",
-    "@streamyx/core": "^2.3.2",
+    "@streamyx/api": "^0.1.4",
     "@types/node": "^22.7.5",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3",

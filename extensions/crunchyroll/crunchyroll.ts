@@ -1,5 +1,4 @@
-import type { Extension, ContentMetadata, ContentSource, DrmConfig } from '@streamyx/api';
-import type { Options } from '@streamyx/core';
+import type { Extension, ContentMetadata, ContentSource, DrmConfig, Options } from '@streamyx/api';
 import { DEVICE, ROUTES } from './lib/constants';
 import { signIn } from './lib/auth';
 import { fetchEpisodes, fetchObject, fetchPlayData, fetchSeriesSeasons, revokePlayData } from './lib/api';
