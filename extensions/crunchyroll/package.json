@@ -11,6 +11,7 @@
     "build": "tsup crunchyroll.ts --format esm,cjs --dts --tsconfig tsconfig.json --clean --minify",
     "postinstall": "npm run build",
     "dev": "tsc --watch -p ./tsconfig.json",
+    "prepublishOnly": "npm run build",
     "test": "vitest"
   },
   "files": [
