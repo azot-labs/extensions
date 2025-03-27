@@ -1,10 +1,10 @@
 import type { CmsAuthResponse } from './types';
-import { createBasicToken, DEVICE, ROUTES } from './constants';
+import { createBasicToken, DEVICE, ROUTES, USER_AGENT } from './constants';
 
 export const HEADERS = {
   authorization: DEVICE.authorization,
   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-  'User-Agent': DEVICE.userAgent,
+  'User-Agent': USER_AGENT,
 };
 
 const fetchProductionSecret = async () => {
@@ -22,7 +22,8 @@ export const updateAuthorizationHeader = async () => {
   const result = await fetchProductionSecret();
   if (!result) return;
   const { id, secret } = result;
-  HEADERS.authorization = createBasicToken(id, secret);
+  const basicToken = createBasicToken(id, secret);
+  HEADERS.authorization = `Basic ${basicToken}`;
 };
 
 const buildRequestOptions = (params: Record<string, string>) => {

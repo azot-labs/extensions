@@ -21,6 +21,23 @@ export const ROUTES = {
   bundle: `${DOMAINS.static}/vilos-v2/web/vilos/js/bundle.js`,
 };
 
+export const PLAY_PLATFORMS = {
+  chrome: 'web/chrome',
+  firefox: 'web/firefox',
+  safari: 'web/safari',
+  edge: 'web/edge',
+  fallback: 'web/fallback',
+  ps4: 'console/ps4',
+  ps5: 'console/ps5',
+  switch: 'console/switch',
+  samsungtv: 'tv/samsung',
+  lgtv: 'tv/lg',
+  rokutv: 'tv/roku',
+  android: 'android/phone',
+  iphone: 'ios/iphone',
+  ipad: 'ios/ipad',
+};
+
 export const CLIENTS = {
   mobile: { id: 'nwdqehqddoxeknc445eo', secret: 'Sv0axNM9NBy4Kp8No2HzdPN-2yV9vUiZ' },
   switch: { id: 't-kdgp2h8c3jub8fn0fq', secret: 'yfLDfMfrYvKXh4JXS1LEI2cCqu1v5Wan' },
@@ -62,5 +79,9 @@ export const DEVICES = {
     clientSecret: CLIENTS.mobile.secret,
   }),
 };
+
+// This User-Agent bypasses Cloudflare security by the newer Endpoint
+export const USER_AGENT =
+  'Crunchyroll/4.71.0 (bundle_identifier:com.crunchyroll.iphone; build_number:4052956.474096152) iOS/18.3.2 Gravity/4.71.0';
 
 export const DEVICE = DEVICES.androidPhone;

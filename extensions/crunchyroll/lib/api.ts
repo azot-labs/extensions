@@ -1,5 +1,5 @@
 import type { Cms } from './types';
-import { DEVICE, ROUTES } from './constants';
+import { PLAY_PLATFORMS, ROUTES, USER_AGENT } from './constants';
 
 const request = async (url: string, method: string = 'GET') => {
   console.debug(`Getting data from ${url}...`);
@@ -7,7 +7,7 @@ const request = async (url: string, method: string = 'GET') => {
     method,
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      'User-Agent': DEVICE.userAgent,
+      'User-Agent': USER_AGENT,
     },
   });
   const data = (await response.text()) || '';
@@ -46,12 +46,8 @@ export const fetchProfile = async () => {
   return request(ROUTES.profile);
 };
 
-export const fetchPlayData = async (
-  id: string | number,
-  devicePlatform = DEVICE.platform,
-  deviceName = DEVICE.name
-) => {
-  return request(`${ROUTES.play}/${id}/${devicePlatform}/${deviceName}/play`);
+export const fetchPlayData = async (id: string | number) => {
+  return request(`${ROUTES.play}/${id}/${PLAY_PLATFORMS.chrome}/play`);
 };
 
 export const revokePlayData = async (id: string | number, token: string) => {
