@@ -188,7 +188,6 @@ const crunchyroll: Extension = {
   init,
 
   fetchContentMetadata: async (url, args) => {
-    await updateAuthorizationHeader();
     const episodeId = url.split('watch/')[1]?.split('/')[0];
     const seriesId = url.split('series/')[1]?.split('/')[0];
     const results: ContentMetadata[] = [];
