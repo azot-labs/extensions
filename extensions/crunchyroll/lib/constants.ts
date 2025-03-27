@@ -20,7 +20,7 @@ export const ROUTES = {
 };
 
 export const CLIENTS = {
-  mobile: { id: 'punh4hkqqc901uyiijz7', secret: 'lN80LwOzs6LQp7uG3DRcSiQTGdTSwGo4' }, // ConfigurationImpl.kt
+  mobile: { id: 'nwdqehqddoxeknc445eo', secret: 'Sv0axNM9NBy4Kp8No2HzdPN-2yV9vUiZ' },
   switch: { id: 't-kdgp2h8c3jub8fn0fq', secret: 'yfLDfMfrYvKXh4JXS1LEI2cCqu1v5Wan' },
   tv: { id: 'ju8lksokvlqmg1_fjmnv', secret: 'AMZSQvd9Dg-kI4Qc7NPqiU5O6aKoZIkh' },
   tvProto: { id: 'haz2ernyiind8rkvoeg-', secret: 'kce7P5Af9-OMoNnXcVwqZCpg1vFeaR0p' },
