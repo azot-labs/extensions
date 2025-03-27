@@ -1,10 +1,28 @@
 import type { CmsAuthResponse } from './types';
-import { DEVICE, ROUTES } from './constants';
+import { createBasicToken, DEVICE, ROUTES } from './constants';
 
 export const HEADERS = {
   authorization: DEVICE.authorization,
   'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   'User-Agent': DEVICE.userAgent,
+};
+
+const fetchProductionSecret = async () => {
+  const text = await fetch(ROUTES.bundle).then((res) => res.text());
+  const tokens = text.match(/prod="([\w-]+:[\w-]+)"/);
+  if (!tokens) {
+    console.error('Failed to find production secret');
+    return null;
+  }
+  const [id, secret] = tokens[1].split(':');
+  return { id, secret };
+};
+
+export const updateAuthorizationHeader = async () => {
+  const result = await fetchProductionSecret();
+  if (!result) return;
+  const { id, secret } = result;
+  HEADERS.authorization = createBasicToken(id, secret);
 };
 
 const buildRequestOptions = (params: Record<string, string>) => {

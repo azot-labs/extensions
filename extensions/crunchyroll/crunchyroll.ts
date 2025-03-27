@@ -1,6 +1,6 @@
 import type { Extension, ContentMetadata, ContentSource, DrmConfig, Options } from '@streamyx/api';
 import { DEVICE, ROUTES } from './lib/constants';
-import { signIn } from './lib/auth';
+import { signIn, updateAuthorizationHeader } from './lib/auth';
 import { fetchEpisodes, fetchObject, fetchPlayData, fetchSeriesSeasons, revokePlayData } from './lib/api';
 
 const buildDrmRequestOptions = (assetId: string, accountId: string) => ({
@@ -188,6 +188,7 @@ const crunchyroll: Extension = {
   init,
 
   fetchContentMetadata: async (url, args) => {
+    await updateAuthorizationHeader();
     const episodeId = url.split('watch/')[1]?.split('/')[0];
     const seriesId = url.split('series/')[1]?.split('/')[0];
     const results: ContentMetadata[] = [];

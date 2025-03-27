@@ -6,6 +6,7 @@ export const DOMAINS = {
   proto: 'https://beta-api.etp-proto0.com',
   staging: 'https://beta-stage-api.crunchyroll.com',
   play: 'https://cr-play-service.prd.crunchyrollsvc.com',
+  static: 'https://static.crunchyroll.com',
 };
 
 export const ROUTES = {
@@ -17,6 +18,7 @@ export const ROUTES = {
   profile: `${DOMAINS.betaApi}/accounts/v1/me/profile`,
   drm: `${DOMAINS.betaApi}/drm/v1/auth`,
   play: `${DOMAINS.play}/v1`,
+  bundle: `${DOMAINS.static}/vilos-v2/web/vilos/js/bundle.js`,
 };
 
 export const CLIENTS = {
@@ -30,7 +32,7 @@ export const CLIENTS = {
   firetvStaging: { id: 'buieosfrytrycw9gco7b', secret: 'GAJSFWaWopNDZetpHJsS2qEd4CdlJG96\n' },
 };
 
-const createBasicToken = (clientId: string, clientSecret: string) =>
+export const createBasicToken = (clientId: string, clientSecret: string) =>
   Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 
 const createDevice = <T = Record<string, string>>(

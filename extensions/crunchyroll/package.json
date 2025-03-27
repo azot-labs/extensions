@@ -1,6 +1,6 @@
 {
   "name": "@streamyx/extension-crunchyroll",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "World’s largest dedicated anime library",
   "license": "MIT",
