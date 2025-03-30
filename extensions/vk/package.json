@@ -1,7 +1,11 @@
 {
   "name": "vk",
   "version": "0.0.3",
+  "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Largest video platform in Russia",
+  "config": {
+    "logo": "https://play-lh.googleusercontent.com/QV9xLTrHGQWNXixe3UH9PS0VK1O14zYCLvTjO9g-3-M5HcgUJ0pXHW_0ccMeiCDn_D8=w480-h960-rw"
+  },
   "main": "vk.js",
   "files": [
     "vk.js"
@@ -12,7 +16,6 @@
     "extension",
     "vk"
   ],
-  "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
   "private": true,
   "readmeFilename": "README.md",

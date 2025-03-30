@@ -1,10 +1,13 @@
 {
   "name": "kinescope",
   "version": "0.0.2",
-  "description": "Online video platform for business and EdTech",
-  "main": "kinescope.js",
-  "private": true,
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
+  "description": "Online video platform for business and EdTech",
+  "config": {
+    "logo": "https://336118.selcdn.ru/Gutsy-Culebra/products/Kinescope-Logo.png"
+  },
+  "private": true,
+  "main": "kinescope.js",
   "engines": {
     "node": "20 || 21 || 22 || 23"
   },

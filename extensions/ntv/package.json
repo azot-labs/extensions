@@ -1,7 +1,11 @@
 {
   "name": "ntv",
   "version": "0.0.2",
+  "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Largest commercial television channel in Russia with federal broadcasting",
+  "config": {
+    "logo": "https://static.ntv.ru/static/images/logo.png"
+  },
   "main": "ntv.js",
   "files": [
     "ntv.js"
@@ -12,7 +16,6 @@
     "extension",
     "ntv"
   ],
-  "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "license": "MIT",
   "private": true,
   "readmeFilename": "README.md",
