@@ -8,7 +8,7 @@ module.exports = defineExtension({
   fetchContentMetadata: async (url, args) => {
     const [ownerId, videoId] = url.split('video-')[1].split('_');
 
-    const response = await http.fetchAsChrome('https://vkvideo.ru/al_video.php?act=show', {
+    const response = await fetch('https://vkvideo.ru/al_video.php?act=show', {
       method: 'POST',
       headers: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
