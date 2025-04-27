@@ -4,7 +4,7 @@
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Russian platform for video conferences and webinars",
   "config": {
-    "logo": "https://sun9-50.userapi.com/impg/rY5N7sdA93TFdjkeYqPTnPIjvCJ0rALo_V7V8g/zLAaAv0PpvY.jpg?size=400x400&quality=95&sign=5ddcd6358131b204b8619cb8eeff943f&type=album"
+    "iconUrl": "https://sun9-50.userapi.com/impg/rY5N7sdA93TFdjkeYqPTnPIjvCJ0rALo_V7V8g/zLAaAv0PpvY.jpg?size=400x400&quality=95&sign=5ddcd6358131b204b8619cb8eeff943f&type=album"
   },
   "main": "virtualroom.js",
   "files": [

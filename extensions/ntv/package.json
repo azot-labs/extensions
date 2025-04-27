@@ -4,7 +4,7 @@
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Largest commercial television channel in Russia with federal broadcasting",
   "config": {
-    "logo": "https://static.ntv.ru/static/images/logo.png"
+    "iconUrl": "https://static.ntv.ru/static/images/logo.png"
   },
   "main": "ntv.js",
   "files": [

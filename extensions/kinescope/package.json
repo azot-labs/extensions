@@ -4,7 +4,7 @@
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Online video platform for business and EdTech",
   "config": {
-    "logo": "https://336118.selcdn.ru/Gutsy-Culebra/products/Kinescope-Logo.png"
+    "iconUrl": "https://336118.selcdn.ru/Gutsy-Culebra/products/Kinescope-Logo.png"
   },
   "private": true,
   "main": "kinescope.js",

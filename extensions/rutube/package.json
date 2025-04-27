@@ -4,7 +4,7 @@
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Russian online service for hosting and watching videos",
   "config": {
-    "logo": "https://play-lh.googleusercontent.com/_FBmOBmM0tU2TUjcvPSX8MDl5ij91wND-VSzsNUfgOT7gkIqLJngsQHRRcBgxEcxIQ=w480-h960-rw"
+    "iconUrl": "https://play-lh.googleusercontent.com/_FBmOBmM0tU2TUjcvPSX8MDl5ij91wND-VSzsNUfgOT7gkIqLJngsQHRRcBgxEcxIQ=w480-h960-rw"
   },
   "main": "rutube.js",
   "files": [

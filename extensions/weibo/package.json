@@ -4,7 +4,7 @@
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Microblogging platform and one of the largest social media platforms in China",
   "config": {
-    "logo": "https://play-lh.googleusercontent.com/TTKq2trnzgtoyM0jc1pyrrmXtA_Yd3A2hxubZtDahdZStYf4GPANZa-wjDb1ELHrGqh_=w480-h960-rw"
+    "iconUrl": "https://play-lh.googleusercontent.com/TTKq2trnzgtoyM0jc1pyrrmXtA_Yd3A2hxubZtDahdZStYf4GPANZa-wjDb1ELHrGqh_=w480-h960-rw"
   },
   "main": "weibo.js",
   "files": [
