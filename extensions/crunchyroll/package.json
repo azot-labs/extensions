@@ -11,7 +11,7 @@
   "module": "dist/crunchyroll.mjs",
   "types": "dist/crunchyroll.d.ts",
   "scripts": {
-    "build": "tsup crunchyroll.ts --format esm,cjs --dts --tsconfig tsconfig.json --clean --minify",
+    "build": "tsup crunchyroll.ts --format esm,cjs --tsconfig tsconfig.json --clean --minify",
     "postinstall": "npm run build",
     "dev": "tsc --watch -p ./tsconfig.json",
     "prepublishOnly": "npm run build",
@@ -33,7 +33,7 @@
     }
   },
   "devDependencies": {
-    "@streamyx/api": "^0.1.4",
+    "@streamyx/api": "^0.2.6",
     "@types/node": "^22.7.5",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3",
