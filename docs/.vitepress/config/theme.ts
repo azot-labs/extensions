@@ -47,7 +47,7 @@ export function getLocaleConfig(lang: string) {
     sidebar,
     outline: 'deep',
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vitalygashkov/streamyx-extensions' },
+      { icon: 'github', link: 'https://github.com/streamyx-labs/extensions' },
       { icon: 'npm', link: 'https://www.npmjs.com/package/@streamyx/api' },
     ],
     footer: {
