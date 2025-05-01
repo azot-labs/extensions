@@ -8,32 +8,18 @@
   },
   "license": "MIT",
   "main": "dist/crunchyroll.js",
-  "module": "dist/crunchyroll.mjs",
-  "types": "dist/crunchyroll.d.ts",
   "scripts": {
-    "build": "tsup crunchyroll.ts --format esm,cjs --tsconfig tsconfig.json --clean --minify",
+    "dev": "stx dev",
+    "build": "stx build",
     "postinstall": "npm run build",
-    "dev": "tsc --watch -p ./tsconfig.json",
     "prepublishOnly": "npm run build",
     "test": "vitest"
   },
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/crunchyroll.d.mts",
-        "default": "./dist/crunchyroll.mjs"
-      },
-      "require": {
-        "types": "./dist/crunchyroll.d.ts",
-        "default": "./dist/crunchyroll.js"
-      }
-    }
-  },
   "devDependencies": {
-    "@streamyx/api": "^0.2.6",
+    "@streamyx/api": "^0.2.7",
     "@types/node": "^22.7.5",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3",

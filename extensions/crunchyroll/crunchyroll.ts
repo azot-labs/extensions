@@ -1,4 +1,5 @@
-import type { Extension, ContentMetadata, ContentSource, DrmConfig, Options } from '@streamyx/api';
+import type { ContentMetadata, ContentSource, DrmConfig, Options } from '@streamyx/api';
+import { defineExtension } from '@streamyx/api';
 import { DEVICE, ROUTES } from './lib/constants';
 import { signIn, updateAuthorizationHeader } from './lib/auth';
 import { fetchEpisodes, fetchObject, fetchPlayData, fetchSeriesSeasons, revokePlayData } from './lib/api';
@@ -182,7 +183,7 @@ const getEpisodeIdsBySeries = async (seriesId: string, args: Options) => {
   return episodeIds;
 };
 
-const crunchyroll: Extension = {
+export default defineExtension({
   name: 'crunchyroll',
   tag: 'CR',
   init,
@@ -218,6 +219,4 @@ const crunchyroll: Extension = {
   fetchContentDrm: async ({ assetId }) => {
     return getDrmConfig(assetId);
   },
-};
-
-export default crunchyroll;
+});
