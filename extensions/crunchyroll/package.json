@@ -19,7 +19,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@streamyx/api": "^0.2.7",
+    "@streamyx/api": "^0.2.8",
     "@types/node": "^22.7.5",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3",
