@@ -1,10 +1,11 @@
 import type { Cms } from './types';
-import { PLAY_PLATFORMS, ROUTES, USER_AGENT } from './constants';
+import { DEFAULT_PLAY_PLATFORM, ROUTES, USER_AGENT } from './constants';
 
 const request = async (url: string, method: string = 'GET') => {
   console.debug(`Getting data from ${url}...`);
   const response = await fetch(url, {
     method,
+    integrity: 'fetch',
     headers: {
       authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       'User-Agent': USER_AGENT,
@@ -46,8 +47,12 @@ export const fetchProfile = async () => {
   return request(ROUTES.profile);
 };
 
+export const fetchPlayback = async (id: string | number) => {
+  return request(`${ROUTES.playback}/${id}/${DEFAULT_PLAY_PLATFORM}/play`);
+};
+
 export const fetchPlayData = async (id: string | number) => {
-  return request(`${ROUTES.play}/${id}/${PLAY_PLATFORMS.chrome}/play`);
+  return request(`${ROUTES.play}/${id}/${DEFAULT_PLAY_PLATFORM}/play`);
 };
 
 export const revokePlayData = async (id: string | number, token: string) => {
