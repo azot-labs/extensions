@@ -1,8 +1,15 @@
 import type { ContentMetadata, ContentSource, DrmConfig, Options } from '@streamyx/api';
 import { defineExtension } from '@streamyx/api';
-import { DEVICE, ROUTES } from './lib/constants';
+import { ROUTES, USER_AGENT } from './lib/constants';
 import { signIn, updateAuthorizationHeader } from './lib/auth';
-import { fetchEpisodes, fetchObject, fetchPlayData, fetchSeriesSeasons, revokePlayData } from './lib/api';
+import {
+  fetchEpisodes,
+  fetchObject,
+  fetchPlayback,
+  fetchPlayData,
+  fetchSeriesSeasons,
+  revokePlayData,
+} from './lib/api';
 
 const buildDrmRequestOptions = (assetId: string, accountId: string) => ({
   method: 'POST',
@@ -76,7 +83,7 @@ const getEpisodeMetadata = async (episodeId: string, _args: Options): Promise<Co
 };
 
 const getEpisodeSource = async (episodeId: string, args: Options) => {
-  const play = await fetchPlayData(episodeId);
+  const play = await fetchPlayback(episodeId);
 
   if (play.error === 'TOO_MANY_ACTIVE_STREAMS') {
     console.warn(`Too many active streams. Revoking all active streams...`);
@@ -131,10 +138,20 @@ const getEpisodeSource = async (episodeId: string, args: Options) => {
     url,
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      // 'X-Cr-Disable-Drm': 'true',
-      'User-Agent': DEVICE.userAgent,
+      'User-Agent': USER_AGENT,
     },
-    drm: { payload: { assetId } },
+    drm: {
+      server: ROUTES.widevine,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        'User-Agent': USER_AGENT,
+        Pragma: 'no-cache',
+        'Cache-Control': 'no-cache',
+        'content-type': 'application/octet-stream',
+        'x-cr-content-id': data.guid || episodeId,
+        'x-cr-video-token': play.token,
+      },
+    },
     audioType,
     audioLanguage: data.audioLocale,
     subtitles,
