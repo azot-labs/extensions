@@ -27,7 +27,7 @@ module.exports = defineExtension({
     const playerOptionsString = data.split('playerOptions = ')[1]?.split('};')[0] + '}';
     const playerOptions = eval(`(${playerOptionsString})`);
     const playlist = playerOptions.playlist[0];
-    const manifestUrl = playlist.sources.shakadash?.src;
+    const manifestUrl = playlist.sources.shakadash?.src || playlist.sources.shakahls;
 
     const drm = {};
     const clearkey = playlist.drm.clearkey;
