@@ -67,7 +67,7 @@ module.exports = defineExtension({
     const title = play.title.trim();
     const artist = play.author.name.trim();
 
-    results.push({ title: `${title} ${artist}`, source: { url: playlistUrl } });
+    results.push({ title, source: { url: playlistUrl } });
 
     return results;
   },
