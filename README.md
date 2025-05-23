@@ -1,6 +1,6 @@
 # Streamyx Extensions
 
-[Streamyx](https://streamyx.ru) lets you download your favorite videos and music from many streaming services. This repository contains all extensions that are available for install. It also includes documentation and examples of how to extend Streamyx using Node.js.
+[Streamyx](https://streamyx.tv) lets you download your favorite videos and music from many streaming services. This repository contains all extensions that are available for install. It also includes documentation and examples of how to extend Streamyx using Node.js.
 
 ## Getting Started
 
@@ -12,4 +12,4 @@ Streamyx wouldn't be where it is without the feedback from our community, so we 
 
 ## Community
 
-Join our [Telegram community](https://t.me/streamyxtalks) to share your extension, debug nasty bugs or simply get to know like-minded folks.
+Join our [Discord community](https://discord.gg/fHMgAgc7gU) to share your extension, debug nasty bugs or simply get to know like-minded folks.
