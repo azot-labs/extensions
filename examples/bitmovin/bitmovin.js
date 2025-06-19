@@ -2,7 +2,7 @@
 
 const { defineExtension } = require('@streamyx/api');
 
-// Only CommonJS syntax modules is compatible with Streamyx at this time
+// Only CommonJS syntax modules is compatible with Azot at this time
 // `defineExtension` is just a wrapper for type checking, you can export extension directly as an object if you want
 
 module.exports = defineExtension({

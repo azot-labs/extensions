@@ -1,8 +1,8 @@
-# Streamyx Extension Example
+# Azot Extension Example
 
-In this example we have a simple implementation of [Streamyx](https://streamyx.ru) extension that adds support for downloading video from [Bitmovin](https://bitmovin.com/demos/drm/).
+In this example we have a simple implementation of [Azot](https://azot.so) extension that adds support for downloading video from [Bitmovin](https://bitmovin.com/demos/drm/).
 
-Extension can be added to Streamyx via `install` command from direct URL or from local path.
+Extension can be added to Azot via `install` command from direct URL or from local path.
 
 Supported formats for distribution are `zip` and `tgz`.
 
@@ -10,13 +10,7 @@ Supported formats for distribution are `zip` and `tgz`.
 
 [Node.js](https://nodejs.org/en/) is required.
 
-Clone this repository:
-
-```shell
-git clone https://github.com/vitalygashkov/streamyx-service-example.git
-```
-
-or just download and unpack source code manually.
+Clone this repository.
 
 Install dependencies:
 
@@ -48,24 +42,14 @@ npm pack
 
 Results will be `tgz` and `zip` files. You can share any of this files to distribute extension.
 
-### Remote via NPM
-
-Publish your code to NPM:
-
-```shell
-npm publish
-```
-
-Then you can simply add extension by package name via `install` Streamyx command:
-
-```shell
-streamyx install @streamyx/extension-bitmovin
-```
-
 ### Remote via GitHub
 
 Publish your code to GitHub.
 
-Create release in [GitHub Releases](https://github.com/vitalygashkov/streamyx-service-example/releases) section.
+Create release in GitHub Releases section with assets.
 
-GitHub will create `zip` and `tgz` files for you. After that you can share archive URL from GitHub releases.
+Then you can simply add extension by package name via `install` Azot command:
+
+```shell
+azot install github:username/repo
+```

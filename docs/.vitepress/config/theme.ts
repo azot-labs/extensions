@@ -5,15 +5,15 @@ export function getLocaleConfig(lang: string) {
   const t = createTranslate(lang);
 
   const urlPrefix = lang && lang !== 'en' ? (`/${lang}` as const) : '';
-  const title = t('Streamyx API');
-  const description = t('Start building your perfect extensions with the Streamyx API');
+  const title = t('Azot API');
+  const description = t('Start building your perfect extensions with the Azot API');
   const titleTemplate = `:title | ${description}`;
 
-  const docsLink = `https://developers.streamyx.ru/`;
-  const ogImage = `https://streamyx.ru/favicon.ico`;
+  const docsLink = `https://developers.azot.so/`;
+  const ogImage = `https://azot.so/favicon.ico`;
 
   const head: HeadConfig[] = [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: 'https://streamyx.ru/favicon.ico' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: 'https://azot.so/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#ff7e17' }],
     ['meta', { property: 'og:title', content: title }],
     ['meta', { property: 'og:description', content: description }],
@@ -42,12 +42,12 @@ export function getLocaleConfig(lang: string) {
   ];
 
   const themeConfig: DefaultTheme.Config = {
-    logo: { src: 'https://streamyx.ru/favicon.ico', width: 24, height: 24 },
+    logo: { src: 'https://azot.so/favicon.ico', width: 24, height: 24 },
     nav,
     sidebar,
     outline: 'deep',
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/streamyx-labs/extensions' },
+      { icon: 'github', link: 'https://github.com/azot-labs/extensions' },
       { icon: 'npm', link: 'https://www.npmjs.com/package/@streamyx/api' },
     ],
     footer: {
