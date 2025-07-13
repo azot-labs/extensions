@@ -1,6 +1,10 @@
 [
   "github:azot-labs/extension-crunchyroll",
+  "github:azot-labs/extension-soundcloud",
+  "github:azot-labs/extension-weibo",
   "github:azot-labs/extension-rutube",
   "github:azot-labs/extension-vk",
+  "github:azot-labs/extension-ntv",
+  "github:azot-labs/extension-virtualroom",
   "github:azot-labs/extension-kinescope"
 ]
