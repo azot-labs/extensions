@@ -1,1 +1,6 @@
-["github:azot-labs/extension-crunchyroll", "github:azot-labs/extension-vk"]
+[
+  "github:azot-labs/extension-crunchyroll",
+  "github:azot-labs/extension-rutube",
+  "github:azot-labs/extension-vk",
+  "github:azot-labs/extension-kinescope"
+]
