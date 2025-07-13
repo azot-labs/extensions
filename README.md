@@ -4,7 +4,7 @@
 
 ## Getting Started
 
-Check [TypeScript interfaces](https://github.com/azot-labs/azot/tree/main/packages/api/types) to get started with our API. If you want to discover and install extensions, check out [Extension List](https://github.com/azot-labs/azot/tree/main/extensions/).
+Check [TypeScript interfaces](https://www.npmjs.com/package/@streamyx/api?activeTab=code) to get started with our API. If you want to discover and install extensions, check out [Extension List](https://github.com/azot-labs/extensions/blob/main/extensions.json).
 
 ## Feedback
 
