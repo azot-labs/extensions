@@ -95,8 +95,10 @@ In this step, you'll rename the extension by updating the extension info, `packa
 1. Open `package.json` in your code editor.
 2. Change `name` to a unique identifier, such as "hello-world".
 3. Change `config.title` to a human-friendly name, such as "Hello world".
-4. Rename the extension folder to match the extension's name.
-5. Reinstall extension to load the new changes to the extension folder.
+4. Change `config.icon` to your extension's icon URL.
+5. Also fill in `author` and `funding` fields with your information.
+6. Rename the extension folder to match the extension's name.
+7. Reinstall extension to load the new changes to the extension folder.
 
 ```sh
 azot uninstall /path/to/azot-extension-example
