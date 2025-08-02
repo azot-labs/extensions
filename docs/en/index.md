@@ -4,8 +4,6 @@ Start building your perfect extensions with the Azot API.
 
 Welcome, developers! Our docs cover guides, examples, references, and more to help you build extensions and share them with [our community](https://discord.gg/fHMgAgc7gU).
 
-![](/introduction-hello-world.png)
-
 ## Key features
 
 Here are a few points that make our ecosystem special:

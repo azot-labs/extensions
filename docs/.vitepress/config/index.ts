@@ -1,38 +1,12 @@
 import { defineConfig } from 'vitepress';
-import { getLocaleConfig } from './theme';
+import { shared } from './shared';
+import { en } from './en';
+import { ru } from './ru';
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
+  ...shared,
   locales: {
-    root: getLocaleConfig('en'),
-    'ru-RU': getLocaleConfig('ru-RU'),
-  },
-  lastUpdated: true,
-  cleanUrls: true,
-  themeConfig: {
-    search: {
-      provider: 'local',
-      options: {
-        locales: {
-          'ru-RU': {
-            translations: {
-              button: {
-                buttonText: 'Поиск',
-                buttonAriaLabel: 'Поиск',
-              },
-              modal: {
-                noResultsText: 'Ничего не найдено',
-                resetButtonTitle: 'Очистить поиск',
-                footer: {
-                  selectText: 'Выбрать',
-                  navigateText: 'Навигация',
-                  closeText: 'Закрыть',
-                },
-              },
-            },
-          },
-        },
-      },
-    },
+    root: { label: 'English', ...en },
+    ru: { label: 'Русский', ...ru },
   },
 });
