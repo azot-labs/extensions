@@ -75,7 +75,7 @@ export function sidebarExtensions(): DefaultTheme.SidebarItem[] {
     {
       text: 'Релизы',
       collapsed: false,
-      items: [{ text: 'Релиз новых версий с GitHub Actions', link: 'extensions/release-extension' }],
+      items: [{ text: 'Релиз расширения с помощью GitHub Actions', link: 'extensions/release-extension' }],
     },
   ];
 }
