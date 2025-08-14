@@ -1,5 +1,5 @@
 {
-  "name": "@streamyx/extensions",
+  "name": "@azot-labs/extensions",
   "type": "module",
   "private": true,
   "scripts": {
@@ -14,7 +14,8 @@
     "node": ">=22.14"
   },
   "devDependencies": {
-    "@types/node": "^24.1.0",
-    "azot": "^0.9.0"
+    "@types/node": "^24.2.1",
+    "azot": "^0.9.3",
+    "typescript": "^5.9.2"
   }
 }
