@@ -8,14 +8,14 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "vitepress": "^1.6.3"
+    "vitepress": "^1.6.4"
   },
   "engines": {
     "node": ">=22.14"
   },
   "devDependencies": {
-    "@types/node": "^24.2.1",
+    "@types/node": "^24.8.1",
     "azot": "^0.9.3",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   }
 }
