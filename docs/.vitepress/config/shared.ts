@@ -1,12 +1,12 @@
 import { defineConfig } from 'vitepress';
 import { search as ruSearch } from './ru';
 
-const TITLE = 'Azot API';
-const FAVICON = 'https://azot.so/favicon.ico';
-const URL = 'https://developers.azot.so/';
-const GITHUB = 'https://github.com/azot-labs/extensions';
-const NPM = 'https://www.npmjs.com/package/azot';
-const DESCRIPTION = 'Start building your perfect extensions with the Azot API';
+export const TITLE = 'Azot API';
+export const FAVICON = 'https://azot.so/favicon.svg';
+export const DOMAIN = 'https://developers.azot.so/';
+export const GITHUB = 'https://github.com/azot-labs/extensions';
+export const NPM = 'https://www.npmjs.com/package/azot';
+export const DESCRIPTION = 'Start building your perfect extensions with the Azot API';
 
 export const shared = defineConfig({
   title: TITLE,
@@ -56,7 +56,7 @@ export const shared = defineConfig({
     ['meta', { property: 'og:description', content: DESCRIPTION }],
     ['meta', { property: 'og:image', content: FAVICON }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:url', content: URL }],
+    ['meta', { property: 'og:url', content: DOMAIN }],
     ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { property: 'twitter:image', content: FAVICON }],
   ],
