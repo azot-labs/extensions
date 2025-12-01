@@ -1,5 +1,8 @@
 # Azot Extensions
 
+> [!NOTE]
+> The list of community extensions has been moved here:: [azot-labs/azot](https://github.com/azot-labs/azot)
+
 [Azot](https://azot.so) lets you download your favorite videos and music from many streaming services. This repository contains all extensions that are available for install. It also includes documentation and examples of how to extend Azot using Node.js.
 
 ## Getting Started
